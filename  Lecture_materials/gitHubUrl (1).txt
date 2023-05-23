@@ -1,2 +1,0 @@
-GitHub Url
-https://github.com/aokitashipro/udemy_nuxt_test
