@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app-5">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>タイトル</th>
+                    <th>著者</th>
+                    <th>URL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="book in books">
+                    <td>{{book.id}}</td>
+                    <td>{{book.title}}</td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.url}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app-5',
+            data: {
+                todos: [
+                    { text: 'Learn JavaScript' },
+                    { text: 'Learn Vue' },
+                    { text: 'Build something awesome' }
+                ],
+                book: {
+                    title: 'タイトル',
+                    author: '著者名',
+                    url: 'https://google.com'
+                },
+                books: [
+                    {
+                        id: '1',
+                        title: 'タイトル1',
+                        author: '著者名1',
+                        url: 'https://google.com1'
+                    },
+                    {
+                        id: '2',
+                        title: 'タイトル2',
+                        author: '著者名2',
+                        url: 'https://google.com2'
+                    },
+                    {
+                        id: '3',
+                        title: 'タイトル3',
+                        author: '著者名3',
+                        url: 'https://google.com3'
+                    },
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>
