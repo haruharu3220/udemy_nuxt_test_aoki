@@ -15,8 +15,8 @@
 
         .child {
             width: 30%;
-            margin: 0 auto blueviolet;
-            border: 1px bule solid;
+            margin: 0 auto;
+            border: 1px blue solid;
         }
     </style>
 </head>
@@ -54,6 +54,18 @@
                 }
             }
         }
+        let app = new Vue({
+            el: '#app',
+            components: {
+                'my-component': myComponent
+            },
+            data() {
+                return {
+
+                }
+            },
+
+        })
     </script>
 
 </body>
