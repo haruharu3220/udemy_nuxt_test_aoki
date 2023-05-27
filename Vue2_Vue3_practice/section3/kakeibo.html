@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>カンタン家計簿</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .done {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <input type="text" v-model="newItem" placeholder="買ったもの">
+        <input type="number" v-model="price" placeholder="値段">
+        <input type="number" v-model="quantity" placeholder="個数">
+
+        <button @click.prevent="addItem">追加</button>
+
+        <ul v-cloak>
+            <li v-for="(purchasedItem, index) in purchaseLists">
+                {{purchasedItem.item}} {{purchasedItem.price}}円 {{purchasedItem.quantity}}個</span>
+                <button @click="deleteItem(index)">削除</button>
+            </li>
+        </ul>
+        <div v-if="purchaseLists.length!=0">合計：{{sum}} 円</div>
+
+    </div><!-- 仮想DOM -->
+
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    newItem: '',
+                    purchaseLists: [],
+                    price: null,
+                    quantity: null,
+                    sum: 0,
+                }
+            },
+            methods: {
+                addItem() {
+                    if (!this.newItem) return;
+                    const purchasedItem = {
+                        item: this.newItem,
+                        price: this.price,
+                        quantity: this.quantity,
+                    }
+                    this.purchaseLists.push(purchasedItem);
+                    this.sum += this.price * this.quantity;
+                    this.newItem = '';
+                    this.price = '';
+                    this.quantity = '';
+
+                },
+
+                deleteItem(index) {
+                    this.sum -= this.purchaseLists[index].price * this.purchaseLists[index].quantity;
+                    this.purchaseLists.splice(index, 1);
+
+                },
+            },
+        })
+    </script>
+</body>
+
+</html>
