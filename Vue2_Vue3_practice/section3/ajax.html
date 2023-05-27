@@ -11,13 +11,18 @@
 
 <body>
     <div id="app">
-        <button @click="getDogImage">画像を取得</button>
+        <p>検索キーワード</p>
+        <input v-model="keyword" placeholder="検索キーワード">
+        <button @click="getDogImage">記事を取得</button>
+
         <img :src="dogImage">
     </div>
 
 
     <script>
-        const url = 'https://dog.ceo/api/breeds/image/random'
+        // const url = 'https://dog.ceo/api/breeds/image/random'
+
+        const url = 'https://qiita.com/api/v2/items?page=1&per_page=3'
         const options = {
             method: 'get'
         }
@@ -27,6 +32,8 @@
             data() {
                 return {
                     dogImage: '',
+                    keyword: '',
+                    articles: [],
                     test: "これはVueが適切に動くかのテストです"
                 }
             },
@@ -34,8 +41,16 @@
                 async getDogImage() {
                     const response = await fetch(url, options)
                         .then(response => response.json())
-                    //console.log(response.message);
-                    this.dogImage = response.message
+                    console.log(response);
+                    console.log(response[0].title);
+
+                    for (let i = 0; i < 3; i++) {
+                        this.articles[i] = {
+                            title: response[i].title,
+                            url: response[i].url
+                        }
+                    }
+                    // this.dogImage = response.message
                 }
             },
             created() {
