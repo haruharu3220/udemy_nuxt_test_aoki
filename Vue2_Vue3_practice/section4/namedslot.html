@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <title>slot</title>
+</head>
+<style>
+    .parent {
+        width: 80%;
+        margin: 0 auto;
+        border: 1px red solid;
+    }
+
+    .child {
+        width: 30%;
+        margin: 0 auto;
+        border: 1px blue solid;
+    }
+</style>
+
+<body>
+
+    <div id="app" class="parent">
+        <my-com class="child">
+            <template v-slot:header>ここの記載はheader-slotに入ります。</template>
+            ここの記載は名前なしslotの部分に記載されます
+            <template v-slot:footer>ここの記載はfooter-slotに入ります。</template>
+            ここに記載をしても名前なしslotの部分に記載されます。
+        </my-com>
+    </div>
+    <script>
+        let myCom = {
+            template: `<div>
+                <slot name="header">
+                    header
+                </slot>
+                <slot>main contents</slot>
+                <slot name="footer">
+                    footer
+                </slot>
+                </div>    `
+        }
+
+        let app = new Vue({
+            el: '#app',
+            data() {
+                return {
+
+                }
+            },
+            components: {
+                myCom
+            },
+
+        })
+
+    </script>
+</body>
+
+</html>
