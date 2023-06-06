@@ -33,7 +33,7 @@ const routes = [
     props: (route) => ({
       id: route.params.id,
       title: route.params.title,
-      content: route.params.comtent,
+      content: route.params.content,
     }),
   },
 ];
