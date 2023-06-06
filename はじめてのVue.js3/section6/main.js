@@ -8,5 +8,10 @@ const app = Vue.createApp({
       return this.message.split("").reverse().join("");
     },
   },
+  methods: {
+    reversedMessageMethods: function () {
+      return this.message.split("").reverse().join("");
+    },
+  },
 });
 app.mount("#app");
